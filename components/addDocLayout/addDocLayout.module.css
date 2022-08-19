@@ -1,0 +1,215 @@
+.addParent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 85vh;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.addDoc {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    color: white;
+    border-radius: 15px;
+    padding: 20px 0;
+    border: 1px solid #333;
+    background-color: black;
+    box-shadow: 0 8px 24px hsl(210deg 8% 62% / 20%);
+}
+
+.title {
+    margin: 0 0 15px 0;
+    font-size: xx-large;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.selectInputType {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.selectInputText {
+    margin: 0;
+    color: #777;
+    font-size: small;
+}
+
+.selectInputOptionsParent {
+    position: absolute;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+.selectInputOptions {
+    color: white;
+    cursor: pointer;
+    font-size: small;
+}
+
+.inputField {
+    width: 60%;
+    height: auto;
+    outline: none;
+    padding: 15px;
+    color: white;
+    margin: 15px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: transparent;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.inputField::placeholder {
+    color: white;
+}
+
+.fileInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.fileInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.fileInputLabel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 30%;
+    cursor: pointer;
+    padding: 25px 0;
+    border-radius: 5px;
+    margin: 15px 0 5px 0;
+    border: 1px dashed #888;
+    background-color: #222;
+}
+
+.fileInputLabel:hover {
+    border: 1px dashed white;
+}
+
+.uploadIcon {
+    width: 80px;
+    height: 60px;
+    color: #888;
+}
+
+.fileInput:hover .uploadIcon{
+    color: white;
+}
+
+.uploadText {
+    color: #888;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.fileInput:hover .uploadText{
+    color: white;
+}
+
+.fileTypesText {
+    width: 60%;
+    font-size: small;
+    font-weight: 300;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .inputField {
+        width: 50%;
+        margin: 10px 0;
+    }
+
+    .fileInput {
+        width: 50%;
+    }
+
+    .fileTypesText {
+        width: 50%;
+    }
+
+    .rightContainer {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .addParent {
+        height: 83vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .leftContainer {
+        width: 100%;
+    }
+
+    .addDoc {
+        width: 90%;
+    }
+
+    .inputField {
+        width: 70%;
+        margin: 15px 0;
+    }
+
+    .fileInput {
+        width: 70%;
+    }
+
+    .fileTypesText {
+        width: 70%;
+    }
+
+    .rightContainer {
+        width: 0;
+    }
+}

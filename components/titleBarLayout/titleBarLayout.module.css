@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&display=swap'); /* Hitch */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap'); /* Doc */
+
+.titleBarParent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+}
+
+.titlePartOne {
+    margin: 0;
+    color: #888;
+    cursor: pointer;
+    font-size: x-large;
+    font-family: 'Roboto Slab', serif;
+}
+
+.titlePartOne:hover {
+    color: white;
+}
+
+.titlePartOne:hover .titlePartTwo {
+    color: #888;
+}
+
+.titlePartTwo {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media screen and (max-width: 1000px) {
+    .titleBarParent {
+        height: 8vh;
+    }
+
+    .titlePartOne {
+        font-size: medium;
+    }
+}

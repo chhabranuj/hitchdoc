@@ -1,0 +1,72 @@
+.signInParent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100vh;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.title {
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-size: xx-large;
+}
+
+.error {
+    color: red;
+    margin: 0 0 15px 0;
+    font-size: x-small;
+}
+
+.signUp {
+    color: #999;
+    margin-top: 15px;
+    font-size: small;
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    height: 100vh;
+}
+
+@media screen and (max-width: 650px) {
+    .signInParent {
+        justify-content: flex-end;
+        flex-direction: column-reverse;
+    }
+
+    .leftContainer {
+        width: 100%;
+        height: 35%;
+    }
+
+    .title {
+        margin: 40px 0 20px 0;
+    } 
+
+    .rightContainer {
+        width: 65%;
+        height: 40%;
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .rightContainer {
+        width: 0;
+        height: 20%;
+    }
+}

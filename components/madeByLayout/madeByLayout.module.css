@@ -1,0 +1,85 @@
+.madeByParent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.linkParentContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.linkContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    color: white;
+}
+
+.linkTitle {
+    margin-top: 0;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.disclaimer {
+    margin: 0;
+    color: #999;
+    font-size: small;
+    text-align: center;
+}
+
+.connect {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.linkText {
+    color: #999;
+    margin: 8px 4px;
+    font-size: small;
+}
+
+.connect:hover .linkText{
+    color: white;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: small;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 650px) {
+    .linkParentContainer {
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .linkContainer {
+        width: 80%;
+        margin-bottom: 15px;
+    }
+
+    .linkTitle {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+}
