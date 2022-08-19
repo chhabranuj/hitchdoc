@@ -31,6 +31,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (max-width: 1000px) {
     .titleBarParent {
         height: 8vh;

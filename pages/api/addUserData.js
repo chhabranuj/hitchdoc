@@ -9,7 +9,7 @@ const AddUserData = async (req, res) => {
         const data = new UserModel(req.body);
         const allUsers = await userCollection.find({}).toArray();
         allUsers.map(item => {
-            if(item._id == data._id || item.phoneNumber == data.phoneNumber) {
+            if(item._id == data._id) {
                 res.send({result: "userExist"});
             }
         });

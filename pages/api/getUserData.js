@@ -5,10 +5,10 @@ const GetUserData = async (req, res) => {
     const client = await clientPromise;
     const database = client.db(process.env.MONGO_DB);
     const userCollection = database.collection("userCollection");
-    const data = new UserModel(req.body)
+    const data = req.body;
     const allUsers = await userCollection.find({}).toArray();
     allUsers.map(item => {
-        if(item._id == data._id && item.password == data.password) {
+        if(item._id == data._id) {
             res.send({result: item.data});
         }
     });

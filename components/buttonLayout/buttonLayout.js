@@ -6,11 +6,15 @@ const ButtonLayout = (props) => {
 
     return (
         <button className="button" onClick={handleNavigation}>
+            {props.buttonIcon}
             {props.buttonStyle.buttonText}
             <style jsx>{`
                 .button {
                     outline: none;
                     cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     color: ${props.buttonStyle.color};
                     margin: ${props.buttonStyle.margin};
                     background-color: ${props.buttonStyle.bgColor};

@@ -1,14 +1,16 @@
 import axios from 'axios';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
+import { useSession } from 'next-auth/react';
 import CardLayout from "../cardLayout/cardLayout";
 import InputLayout from "../inputLayout/inputLayout";
 import ButtonLayout from "../buttonLayout/buttonLayout";
 import landingLayoutStyle from "./landingLayout.module.css";
-import moment from 'moment';
 
 const LandingLayout = () => {
     const router = useRouter();
+    const {data: session} = useSession();
     const [data, setData] = useState([]);
     const [fileUrl, setFileUrl] = useState("");
     const [searchData, setSearchData] = useState(true);
@@ -76,15 +78,19 @@ const LandingLayout = () => {
     }
 
     useEffect(() => {
-        const tempData = JSON.parse(sessionStorage.getItem("data"))
-        axios.get("/api/getCardImages")
-            .then((response) => {
-                tempData.map((item, index) => {
-                    item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
+        if(!session) {
+            window.location.href = "/";
+        }
+        else {
+            const tempData = JSON.parse(sessionStorage.getItem("data"));
+            axios.get("/api/getCardImages")
+                .then((response) => {
+                    tempData.map((item, index) => {
+                        item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
+                    })
+                    setData(sort(tempData));
                 })
-                setData(sort(tempData));
-            })
-        
+        }
     }, [])
 
     const handlePreview = (fileUrl) => {
@@ -163,6 +169,7 @@ const LandingLayout = () => {
 
     return (
         <div className={landingLayoutStyle.landingParent}>
+            <p style={{color: "#777", textAlign: "center", margin: "0"}}>We recommend you to Sign Out after you're done.</p>
             {
                 !data.length?
                     <div className={landingLayoutStyle.noDataContainer}>

@@ -3,8 +3,6 @@ import { Schema, model, models} from "mongoose";
 const userModel = new Schema({
     _id: {type: String},
     name: {type: String},
-    password: {type: String},
-    phoneNumber: {type: String},
     data: {type: Array}
 })
 

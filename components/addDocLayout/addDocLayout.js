@@ -3,6 +3,7 @@ import Image from "next/image";
 import generateUrl from "../../lib/s3";
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import { IoCloudDone } from 'react-icons/io5';
 import { IoCloudUploadSharp } from 'react-icons/io5';
 import InputLayout from "../inputLayout/inputLayout";
@@ -11,6 +12,7 @@ import addDocLayoutStyle from "./addDocLayout.module.css";
 import inputLayoutStyle from '../inputLayout/inputLayout.module.css';
 
 const AddDocLayout = (props) => {
+    const {data: session} = useSession();
     const router = useRouter();
     const [docTypes, setDocTypes] = useState([]);
     const [handleDoc, setHandleDoc] = useState("");
@@ -85,31 +87,36 @@ const AddDocLayout = (props) => {
     };
 
     useEffect(() => {
-        if(props.handleDoc == "Add Doc"){
-            setHandleDoc("Add Doc");
-            setDoc({
-                ...doc,
-                docCategory: "Enter Doc Category*",
-                docType: "Enter Doc Type*",
-                docDescription: "Enter Doc Description"
-            });
-            setInputText({
-                ...inputText,
-                fileInputText: "Drop Your File Here*"
-            });
+        if(!session) {
+            router.push("/");
         }
         else {
-            setHandleDoc("Edit Doc");
-            setDoc({
-                ...doc,
-                docType: props.data.type,
-                docCategory: props.data.category,
-                docDescription: props.data.description
-            });
-            setInputText({
-                ...inputText,
-                fileInputText: "Already Added"
-            });
+            if(props.handleDoc == "Add Doc"){
+                setHandleDoc("Add Doc");
+                setDoc({
+                    ...doc,
+                    docCategory: "Enter Doc Category*",
+                    docType: "Enter Doc Type*",
+                    docDescription: "Enter Doc Description"
+                });
+                setInputText({
+                    ...inputText,
+                    fileInputText: "Drop Your File Here*"
+                });
+            }
+            else {
+                setHandleDoc("Edit Doc");
+                setDoc({
+                    ...doc,
+                    docType: props.data.type,
+                    docCategory: props.data.category,
+                    docDescription: props.data.description
+                });
+                setInputText({
+                    ...inputText,
+                    fileInputText: "Already Added"
+                });
+            }
         }
     }, []);
     
@@ -244,7 +251,7 @@ const AddDocLayout = (props) => {
         }
     }
 
-    const navigateToLanding = async () => {
+    const addData = async () => {
         if(doc.docCategorydocCategory == "Enter Doc Category*" || doc.docType == "Enter Doc Type*" || !doc.docType || !doc.docFile.name || errors.fieldError) {
             setErrors({
                 ...errors,
@@ -485,7 +492,7 @@ const AddDocLayout = (props) => {
                     </div>
                     {errors.fieldError && <p style={{color: "red", fontSize: "small", margin: "15px 0"}}>Fields can't be empty</p>}
                     {handleDoc == "Add Doc"?
-                        <ButtonLayout buttonStyle={buttonStyleContent} handleButtonClick={navigateToLanding} />:
+                        <ButtonLayout buttonStyle={buttonStyleContent} handleButtonClick={addData} />:
                         <div className={addDocLayoutStyle.buttons}>
                             <ButtonLayout buttonStyle={deleteButtonStyleContent} handleButtonClick={deleteData} />
                             <ButtonLayout buttonStyle={editButtonStyleContent} handleButtonClick={editData} />
