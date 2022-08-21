@@ -13,7 +13,7 @@ const LandingLayout = () => {
     const {data: session} = useSession();
     const [data, setData] = useState([]);
     const [fileUrl, setFileUrl] = useState("");
-    const [searchData, setSearchData] = useState(true);
+    const [visibleData, setVisibleData] = useState([]);
     const [showPreview, setShowPreview] = useState(false);
     const [dateButtonText, setDateButtonText] = useState("NEW TO OLD");
 
@@ -89,6 +89,7 @@ const LandingLayout = () => {
                         item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
                     })
                     setData(sort(tempData));
+                    setVisibleData(sort(tempData))
                 })
         }
     }, [])
@@ -100,28 +101,12 @@ const LandingLayout = () => {
 
     const handleSearchInput = (search) => {
         if(!search.length) {
-            setSearchData(true);
-            setData(JSON.parse(sessionStorage.getItem("data")));
-            const tempData = JSON.parse(sessionStorage.getItem("data"))
-            axios.post("/api/getCardImages")
-                .then((response) => {
-                    tempData.map((item, index) => {
-                        item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
-                    })
-                    setData(sort(tempData));
-                });
-            setDateButtonText("NEW TO OLD");
+            setVisibleData(data);
         }
         else {
-            let searchResult = [];
-            searchResult = data.filter(item => item.type.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()));
-            if(!searchResult.length) {
-                setSearchData(false);
-            }
-            else {
-                setSearchData(true);
-                setData(searchResult);
-            }
+            let tempVisibleData = [];
+            tempVisibleData = data.filter(item => item.type.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase()));
+            setVisibleData(tempVisibleData)
         }
     }
 
@@ -175,32 +160,27 @@ const LandingLayout = () => {
                         <p style={{color: "#888", fontSize: "small", textAlign: "center", lineHeight: "1.2"}}>Looks like you didn&apos;t add any documents yet.<br/><span style={{color: "white", fontSize: "xx-large"}}>Why don&apos;t we start now.</span></p>
                         <ButtonLayout buttonStyle={buttonStyleContent} handleButtonClick={navigateToAddDoc}/>
                     </div>:
-                    searchData?
+
                     <div className={landingLayoutStyle.dataContainer}>
-                            <p style={{color: "#777", textAlign: "center", margin: "0"}}>We recommend you to sign out after you&apos;re done.</p>
-                            <div className={landingLayoutStyle.searchBar}>
-                                <InputLayout placeholder="Search with doc category or type..." width="45%" getData={handleSearchInput} />
-                                <ButtonLayout buttonStyle={buttonStyleContentNewOld} handleButtonClick={handleDateData}/>
-                            </div>
-                            <div className={landingLayoutStyle.docData}>
-                                {
-                                    data.map((item, index) => {
+                        <p style={{color: "#777", textAlign: "center", margin: "0"}}>We recommend you to sign out after you&apos;re done.</p>
+                        <div className={landingLayoutStyle.searchBar}>
+                            <InputLayout placeholder="Search with doc category or type..." width="45%" getData={handleSearchInput} />
+                            <ButtonLayout buttonStyle={buttonStyleContentNewOld} handleButtonClick={handleDateData}/>
+                        </div>
+                        <div className={landingLayoutStyle.docData}>
+                            {
+                                visibleData.length?
+                                    visibleData.map((item, index) => {
                                         return (
                                             <CardLayout key={index} data={item} sendData={naviagteToEditDoc} getDocFile={handlePreview} />
                                         )
-                                    })
-                                }
-                            </div>
-                        </div>:
-                        <div className={landingLayoutStyle.dataContainer}>
-                            <div className={landingLayoutStyle.searchBar}>
-                                <InputLayout placeholder="Search with doc type..." width="45%" getData={handleSearchInput} />
-                                <ButtonLayout buttonStyle={buttonStyleContentNewOld} handleButtonClick={handleDateData}/>
-                            </div>
-                            <div style={{marginTop: "25vh"}}>
-                                <p style={{color: "white", fontSize: "x-large", textAlign: "center", lineHeight: "1.2"}}>Sorry, no results found.</p>
-                            </div>
+                                    }): 
+                                    <div style={{marginTop: "25vh"}}>
+                                        <p style={{color: "white", fontSize: "x-large", textAlign: "center", lineHeight: "1.2"}}>Sorry, no results found.</p>
+                                    </div>
+                            }
                         </div>
+                    </div>
             }
             {
                 showPreview && 
