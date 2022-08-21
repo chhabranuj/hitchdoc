@@ -30,7 +30,7 @@ const SignIn = () => {
                         else {
                             sessionStorage.setItem("username", session.user.email);
                             sessionStorage.setItem("data", JSON.stringify(response.data.result));
-                            router.push("/landing");
+                            router.push("/");
                         }
                     })
             }

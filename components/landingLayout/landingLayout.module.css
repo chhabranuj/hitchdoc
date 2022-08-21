@@ -1,7 +1,10 @@
 .landingParent {
+    z-index: 1;
     width: 100%;
-    margin: 2vh 0;
     min-height: 86vh;
+    position: relative;
+    padding: 12vh 0 2vh 0;
+    background-color: #111;
 }
 
 .dataContainer {

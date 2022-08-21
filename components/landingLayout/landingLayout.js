@@ -63,7 +63,7 @@ const LandingLayout = () => {
     }
 
     const buttonStyleContentEdit = {
-        buttonText: "Download",
+        buttonText: "Preview",
         margin: "0px",
         color: "white",
         border: "none",
@@ -79,7 +79,7 @@ const LandingLayout = () => {
 
     useEffect(() => {
         if(!session) {
-            window.location.href = "/";
+            window.location.href = "/signIn";
         }
         else {
             const tempData = JSON.parse(sessionStorage.getItem("data"));
@@ -162,7 +162,7 @@ const LandingLayout = () => {
                     </div>:
 
                     <div className={landingLayoutStyle.dataContainer}>
-                        <p style={{color: "#777", textAlign: "center", margin: "0"}}>We recommend you to sign out after you&apos;re done.</p>
+                        <p style={{color: "#777", textAlign: "center", margin: "0", textAlign: "center"}}>We recommend you to sign out after you&apos;re done.</p>
                         <div className={landingLayoutStyle.searchBar}>
                             <InputLayout placeholder="Search with doc category or type..." width="45%" getData={handleSearchInput} />
                             <ButtonLayout buttonStyle={buttonStyleContentNewOld} handleButtonClick={handleDateData}/>

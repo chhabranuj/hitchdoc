@@ -26,14 +26,14 @@ const SignUp = () => {
                     .then((response) => {
                         if(response.data.result == "userExist") {
                             router.push({
-                                pathname: "/",
+                                pathname: "/signIn",
                                 query: {fromSignUp: true}
-                            }, "/");
+                            }, "/signIn");
                         }
                         else {
                             sessionStorage.setItem("username", session.user.email);
                             sessionStorage.setItem("data", JSON.stringify([]));
-                            router.push("/landing");
+                            router.push("/");
                         }
                     })
             }

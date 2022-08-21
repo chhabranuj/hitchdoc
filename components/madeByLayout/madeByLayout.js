@@ -6,6 +6,36 @@ import { IoLogoWhatsapp } from "react-icons/io5";
 import madeByLayoutStyle from "./madeByLayout.module.css";
 
 const MadeBy = () => {
+    const ourPartners = [
+        {
+            title: "PenDownOnPaper",
+            logo: <IoEarth className={madeByLayoutStyle.linkLogo} />,
+            link: "https://pendownonpaper.netlify.app/"
+        },
+    ]
+
+    const connectWithUs = [
+        {
+            title: "Github",
+            logo: <IoLogoGithub className={madeByLayoutStyle.linkLogo} />,
+            link: "https://github.com/chhabranuj"
+        },
+        {
+            title: "LinkedIn",
+            logo: <IoLogoLinkedin className={madeByLayoutStyle.linkLogo} />,
+            link: "https://www.linkedin.com/in/anuj-chhabra-b0b2a422a/"
+        },
+        {
+            title: "Whatsapp",
+            logo: <IoLogoWhatsapp className={madeByLayoutStyle.linkLogo} />,
+            link: "https://wa.me/7217746275"
+        },
+        {
+            title: "Know Us",
+            logo: <IoEarth className={madeByLayoutStyle.linkLogo} />,
+            link: "https://chhabranuj.netlify.app"
+        },
+    ]
 
     return(
         <div className={madeByLayoutStyle.madeByParent}>
@@ -17,31 +47,35 @@ const MadeBy = () => {
             <div className={madeByLayoutStyle.linkContainer}>
                 <p className={madeByLayoutStyle.linkTitle}>Our Partners</p>
                 <div>
-                    <div className={madeByLayoutStyle.connect} onClick={() => {window.open("https://pendownonpaper.netlify.app/", "_blank");}}>
-                        <IoEarth className={madeByLayoutStyle.linkText} style={{margin: "0", fontSize: "large"}} />
-                        <p className={madeByLayoutStyle.linkText}>PenDownOnPaper</p>
-                    </div>
+                    {
+                        ourPartners.map((item, index) => {
+                            return (
+                                <div key={index} className={madeByLayoutStyle.connect} onClick={() => {window.open(item.link, "_blank");}}>
+                                    {item.logo}
+                                    <p className={madeByLayoutStyle.linkText}>{item.title}</p>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <div className={madeByLayoutStyle.linkContainer}>
                 <p className={madeByLayoutStyle.linkTitle}>Connect With Us</p>
                 <div>
-                    <div className={madeByLayoutStyle.connect} onClick={() => {window.open("https://github.com/chhabranuj", "_blank");}}>
-                        <IoLogoGithub className={madeByLayoutStyle.linkText} style={{margin: "0", fontSize: "large"}} />
-                        <p className={madeByLayoutStyle.linkText}>Github</p>
-                    </div>
-                    <div className={madeByLayoutStyle.connect} onClick={() => {window.open("https://www.linkedin.com/in/anuj-chhabra-b0b2a422a/", "_blank");}}>
-                        <IoLogoLinkedin className={madeByLayoutStyle.linkText} style={{margin: "0", fontSize: "large"}} />
-                        <p className={madeByLayoutStyle.linkText}>LinkedIn</p>
-                    </div>
-                    <div className={madeByLayoutStyle.connect} onClick={() => {window.open("https://wa.me/7217746275", "_blank");}}>
-                        <IoLogoWhatsapp className={madeByLayoutStyle.linkText} style={{margin: "0", fontSize: "large"}} />
-                        <p className={madeByLayoutStyle.linkText}>Whatsapp</p>
-                    </div>
+                    {
+                        connectWithUs.map((item, index) => {
+                            return (
+                                <div key={index} className={madeByLayoutStyle.connect} onClick={() => {window.open(item.link, "_blank");}}>
+                                    {item.logo}
+                                    <p className={madeByLayoutStyle.linkText}>{item.title}</p>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
             </div>
-            <div className={madeByLayoutStyle.footer} onClick={() => {window.open("https://chhabranuj.netlify.app", "_blank");}}>
+            <div className={madeByLayoutStyle.footer}>
                 <FaCopyright />
                 <p style={{margin: "0"}}>&nbsp;2022 - Hitchdoc. All Rights Reserved.</p>
             </div>

@@ -88,7 +88,7 @@ const AddDocLayout = (props) => {
 
     useEffect(() => {
         if(!session) {
-            window.location.href="/";
+            window.location.href="/signIn";
         }
         else {
             if(props.handleDoc == "Add Doc"){
@@ -307,7 +307,7 @@ const AddDocLayout = (props) => {
                         }
                         else {
                             sessionStorage.setItem("data", JSON.stringify(response.data.result));
-                            router.push('/landing');
+                            router.push('/');
                         }
                     })
                 setErrors({
@@ -346,7 +346,7 @@ const AddDocLayout = (props) => {
                     }
                     else {
                         sessionStorage.setItem("data", JSON.stringify(response.data.result));
-                        router.push('/landing');
+                        router.push("/");
                     }
                 })
             setErrors({
@@ -406,7 +406,7 @@ const AddDocLayout = (props) => {
                             }
                             else {
                                 sessionStorage.setItem("data", JSON.stringify(response.data.result));
-                                router.push('/landing');
+                                router.push("/");
                             }
                         })
                     setErrors({
@@ -423,7 +423,7 @@ const AddDocLayout = (props) => {
             }
         }
         else {
-            window.location.href = "/landing";
+            window.location.href = "/";
         }
     }
 

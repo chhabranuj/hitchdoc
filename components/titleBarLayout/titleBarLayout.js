@@ -40,7 +40,7 @@ const TitleBar = (props) => {
     }
     useEffect(() => {
         if(!session) {
-            router.push("/");
+            router.push("/signIn");
         }
     })
 
@@ -54,7 +54,7 @@ const TitleBar = (props) => {
 
     return (
         <div className={titleBarLayoutStyle.titleBarParent}>
-            <h1 className={titleBarLayoutStyle.titlePartOne} onClick={() => router.push("/landing")}>Hitch<span className={titleBarLayoutStyle.titlePartTwo}>Doc</span></h1>
+            <h1 className={titleBarLayoutStyle.titlePartOne} onClick={() => router.push("/")}>Hitch<span className={titleBarLayoutStyle.titlePartTwo}>Doc</span></h1>
             <div className={titleBarLayoutStyle.buttonsContainer}>
                 {props.showAddButton && <ButtonLayout buttonStyle={buttonStyleContent} handleButtonClick={navigateToAddDoc}/>}
                 <ButtonLayout buttonStyle={signOutButtonStyleContent} buttonIcon={<GoSignIn style={{"marginRight": "5px"}} />} handleButtonClick={() => signOut()} />

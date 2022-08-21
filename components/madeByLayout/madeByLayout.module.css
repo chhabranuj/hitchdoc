@@ -3,8 +3,12 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    top: auto;
+    bottom: 0;
+    z-index: 0;
     width: 100%;
     height: auto;
+    position: sticky;
     background-color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -46,13 +50,19 @@
     cursor: pointer;
 }
 
+.linkLogo {
+    margin: 0;
+    color: #999;
+    font-size: large;
+}
+
 .linkText {
     color: #999;
     margin: 8px 4px;
     font-size: small;
 }
 
-.connect:hover .linkText{
+.connect:hover .linkLogo, .connect:hover .linkText {
     color: white;
 }
 
@@ -61,8 +71,8 @@
     align-items: center;
     justify-content: center;
     color: white;
-    cursor: pointer;
     font-size: small;
+    margin-top: 5px;
     margin-bottom: 20px;
 }
 
