@@ -88,7 +88,7 @@ const AddDocLayout = (props) => {
 
     useEffect(() => {
         if(!session) {
-            router.push("/");
+            window.location.href="/";
         }
         else {
             if(props.handleDoc == "Add Doc"){
@@ -171,20 +171,29 @@ const AddDocLayout = (props) => {
     }
 
     const handleDocInputTypeField = (getDocType) => {
-        console.log(getDocType)
         if(getDocType.length == 0) {
             setDoc({
                 ...doc,
                 docType: "Enter Doc Type*"
             });
+            setErrors({
+                ...errors,
+                fieldError: true,
+            })
         }
-        setDoc({
-            ...doc,
-            docType: getDocType
-        });
-        setOptions({
-            typeOptions: false
-        });
+        else {
+            setDoc({
+                ...doc,
+                docType: getDocType
+            });
+            setOptions({
+                typeOptions: false
+            });
+            setErrors({
+                ...errors,
+                fieldError: false,
+            })
+        }
     }
 
     const handleDocTypeField = (e) => {
@@ -220,34 +229,39 @@ const AddDocLayout = (props) => {
     }
 
     const handleDocFile = (e) => {
-        const fileType = e.target.files[0].type.split("/")[1];
-        if(fileType == "png" || fileType == "jpg" || fileType == "jpeg" || fileType == "pdf") {
-            setErrors({
-                ...errors,
-                fieldError: false
-            });
-            setDoc({
-                ...doc,
-                docFile: e.target.files[0]
-            });
-            if(inputText.fileInputText == "Drop Your File Here*") {
-                setInputText({
-                    ...inputText,
-                    fileInputText: "Added"
-                });
-            }
-            else {
-                setInputText({
-                    ...inputText,
-                    fileInputText: "New Added"
-                });
-            }
+        if(!e.target.files[0]) {
+            return;
         }
         else {
-            setErrors({
-                ...errors,
-                fieldError: true
-            });
+            const fileType = e.target.files[0].type.split("/")[1];
+            if(fileType == "png" || fileType == "jpg" || fileType == "jpeg" || fileType == "pdf") {
+                setErrors({
+                    ...errors,
+                    fieldError: false
+                });
+                setDoc({
+                    ...doc,
+                    docFile: e.target.files[0]
+                });
+                if(inputText.fileInputText == "Drop Your File Here*") {
+                    setInputText({
+                        ...inputText,
+                        fileInputText: "Added"
+                    });
+                }
+                else {
+                    setInputText({
+                        ...inputText,
+                        fileInputText: "New Added"
+                    });
+                }
+            }
+            else {
+                setErrors({
+                    ...errors,
+                    fieldError: true
+                });
+            }
         }
     }
 
@@ -351,7 +365,8 @@ const AddDocLayout = (props) => {
 
     const editData = async () => {
         let uploadedFile = props.data.file;
-        if(doc.docDescription != props.data.description || inputText.fileInputText == "New Added") {
+        if(errors.fieldError) {}
+        else if(doc.docType != props.data.type  || doc.docDescription != props.data.description || inputText.fileInputText == "New Added") {
             try {
                 setInputText({
                     ...inputText,
@@ -414,7 +429,7 @@ const AddDocLayout = (props) => {
 
     const handleS3 = async () => {
         const username = sessionStorage.getItem("username");
-        const url = await generateUrl(`${doc.docCategory}_${doc.docType}_${doc.docFile.name}`, username, doc.docFile.type);
+        const url = await generateUrl(`${doc.docCategory}_${doc.docType}_${doc.docFile.name}`, username.split("@")[0], doc.docFile.type);
         await fetch(url, {
             method: "PUT",
             headers: {
@@ -456,9 +471,7 @@ const AddDocLayout = (props) => {
                                 {
                                     handleDoc == "Add Doc"?
                                         <InputLayout placeholder={doc.docType} getData={handleDocInputTypeField} />:
-                                        <div className={inputLayoutStyle.inputField}>
-                                            <p className={addDocLayoutStyle.selectInputOptions} style={{margin: "0"}}>{doc.docType}</p>
-                                        </div>
+                                        <InputLayout placeholder="Enter Doc Type*" value={doc.docType!="Enter Doc Type*"?doc.docType:""} getData={handleDocInputTypeField} />
                                 }
                             </div>:
                             <div className={inputLayoutStyle.inputField} onClick={openDocTypeOptions}>
@@ -490,7 +503,7 @@ const AddDocLayout = (props) => {
                         </div>
                         <p className={addDocLayoutStyle.fileTypesText}>Please upload only png, jpg, jpeg or pdf.</p>
                     </div>
-                    {errors.fieldError && <p style={{color: "red", fontSize: "small", margin: "15px 0"}}>Fields can't be empty</p>}
+                    {errors.fieldError && <p style={{color: "red", fontSize: "small", margin: "15px 0"}}>Fields can&apos;t be empty</p>}
                     {handleDoc == "Add Doc"?
                         <ButtonLayout buttonStyle={buttonStyleContent} handleButtonClick={addData} />:
                         <div className={addDocLayoutStyle.buttons}>

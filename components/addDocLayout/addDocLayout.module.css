@@ -97,7 +97,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    width: calc(60% + 30px);
 }
 
 .fileInputLabel {
@@ -169,7 +169,7 @@
     }
 
     .fileInput {
-        width: 50%;
+        width: calc(50% + 30px);
     }
 
     .fileTypesText {
@@ -202,7 +202,7 @@
     }
 
     .fileInput {
-        width: 70%;
+        width: calc(70% + 30px);
     }
 
     .fileTypesText {

@@ -9,6 +9,7 @@ const InputLayout = (props) => {
     return(
         <input className={inputLayoutStyle.inputField}
             placeholder={props.placeholder}
+            value={props.value}
             type={props.type}
             onChange={getInput}
             style={{width: props.width}}

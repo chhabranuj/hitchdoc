@@ -169,15 +169,15 @@ const LandingLayout = () => {
 
     return (
         <div className={landingLayoutStyle.landingParent}>
-            <p style={{color: "#777", textAlign: "center", margin: "0"}}>We recommend you to Sign Out after you're done.</p>
             {
                 !data.length?
                     <div className={landingLayoutStyle.noDataContainer}>
-                        <p style={{color: "#888", fontSize: "small", textAlign: "center", lineHeight: "1.2"}}>Looks like you didn't add any documents yet.<br/><span style={{color: "white", fontSize: "xx-large"}}>Why don't we start now.</span></p>
+                        <p style={{color: "#888", fontSize: "small", textAlign: "center", lineHeight: "1.2"}}>Looks like you didn&apos;t add any documents yet.<br/><span style={{color: "white", fontSize: "xx-large"}}>Why don&apos;t we start now.</span></p>
                         <ButtonLayout buttonStyle={buttonStyleContent} handleButtonClick={navigateToAddDoc}/>
                     </div>:
                     searchData?
-                        <div className={landingLayoutStyle.dataContainer}>
+                    <div className={landingLayoutStyle.dataContainer}>
+                            <p style={{color: "#777", textAlign: "center", margin: "0"}}>We recommend you to sign out after you&apos;re done.</p>
                             <div className={landingLayoutStyle.searchBar}>
                                 <InputLayout placeholder="Search with doc category or type..." width="45%" getData={handleSearchInput} />
                                 <ButtonLayout buttonStyle={buttonStyleContentNewOld} handleButtonClick={handleDateData}/>
@@ -211,7 +211,7 @@ const LandingLayout = () => {
                         }
                         <div className={landingLayoutStyle.docPreviewButtons}>
                             <ButtonLayout buttonStyle={buttonStyleContentBack}  handleButtonClick={() => {setShowPreview(false)}}/>
-                            <ButtonLayout buttonStyle={buttonStyleContentEdit} handleButtonClick={() => {window.location.href = fileUrl}}/>
+                            <ButtonLayout buttonStyle={buttonStyleContentEdit} handleButtonClick={() => {window.location.href=fileUrl}}/>
                         </div>
                     </div>
             }

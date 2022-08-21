@@ -44,7 +44,7 @@ const SignIn = () => {
                 <div className={inputLayoutStyle.inputField} onClick={() => signIn("google")}>
                         <p style={{color: "#777", fontSize: "small", margin: "0"}}>Sign In with Google*</p>
                     </div>
-                <p className={signInLayoutStyle.signUp}>Don't have an account. <span style={{color: 'white', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => router.push('/signUp')}>Sign Up</span></p>
+                <p className={signInLayoutStyle.signUp}>Don&apos;t have an account. <span style={{color: 'white', textDecoration: 'underline', cursor: 'pointer'}} onClick={() => router.push('/signUp')}>Sign Up</span></p>
             </div>
             <div className={signInLayoutStyle.rightContainer}>
                 <Image
