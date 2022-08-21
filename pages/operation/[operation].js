@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import clientPromise from "../../lib/mongodb.js";
 import TitleBar from "../../components/titleBarLayout/titleBarLayout";
 import AddDocLayout from "../../components/addDocLayout/addDocLayout";
 
@@ -38,12 +39,14 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async () => {
-    const res = await fetch("http://localhost:3000/api/getInputData");
-    const posts = await res.json();
+    const client = await clientPromise;
+    const database = client.db(process.env.MONGO_DB);
+    const addDocCollections = database.collection("addDocCollection");
+    const result = await addDocCollections.find({}).toArray();
 
     return {
         props: {
-            posts
+            posts: result
         }
     }
 }

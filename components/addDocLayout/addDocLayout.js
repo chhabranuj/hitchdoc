@@ -143,7 +143,7 @@ const AddDocLayout = (props) => {
             docCategory: e.target.innerHTML,
             docType: "Enter Doc Type*",
         });
-        for(let item of props.inputData.result) {
+        for(let item of props.inputData) {
             if(e.target.innerHTML == item.docCategory) {
                 setDocTypes(item.docTypes);
                 flag = true;
@@ -454,7 +454,7 @@ const AddDocLayout = (props) => {
                             {options.categoryOptions && handleDoc == "Add Doc" &&
                                 <div className={addDocLayoutStyle.selectInputOptionsParent}>
                                     {
-                                        props.inputData.result.sort((a,b) => a.docCategory.length - b.docCategory.length).map((item, index) => {
+                                        props.inputData.sort((a,b) => a.docCategory.length - b.docCategory.length).map((item, index) => {
                                             return (
                                                 <p key={index} className={addDocLayoutStyle.selectInputOptions} onClick={handleDocCategoryField}>{item.docCategory}</p>
                                             );
