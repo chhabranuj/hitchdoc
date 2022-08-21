@@ -83,7 +83,7 @@ const LandingLayout = () => {
         }
         else {
             const tempData = JSON.parse(sessionStorage.getItem("data"));
-            axios.get("/api/getCardImages")
+            axios.post("/api/getCardImages")
                 .then((response) => {
                     tempData.map((item, index) => {
                         item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
@@ -103,13 +103,13 @@ const LandingLayout = () => {
             setSearchData(true);
             setData(JSON.parse(sessionStorage.getItem("data")));
             const tempData = JSON.parse(sessionStorage.getItem("data"))
-            axios.get("/api/getCardImages")
-            .then((response) => {
-                tempData.map((item, index) => {
-                    item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
-                })
-                setData(sort(tempData));
-            });
+            axios.post("/api/getCardImages")
+                .then((response) => {
+                    tempData.map((item, index) => {
+                        item.cardImage = response.data.result[index%response.data.result.length].imageUrl;
+                    })
+                    setData(sort(tempData));
+                });
             setDateButtonText("NEW TO OLD");
         }
         else {

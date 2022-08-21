@@ -19,11 +19,7 @@ const SignIn = () => {
                 const body = {
                     _id: session.user.email
                 }
-                axios.get("/api/getUserData", {
-                    params: {
-                        _id: session.user.email
-                    }
-                })
+                axios.post("/api/getUserData", body)
                     .then((response) => {
                         if(response.data.result == "UserNotExist") {
                             router.push({
