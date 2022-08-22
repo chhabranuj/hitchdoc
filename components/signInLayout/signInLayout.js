@@ -77,7 +77,7 @@ const SignIn = () => {
             </div>
             <div className={signInLayoutStyle.rightContainer}>
                 <Image
-                    src="/static/images/signUp.svg"
+                    src="/static/images/signIn.svg"
                     alt="Sign In Image"
                     width={550}
                     height={550}
