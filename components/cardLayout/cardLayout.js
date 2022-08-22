@@ -41,7 +41,7 @@ const CardLayout = (props) => {
                     {
                         menuOptions && 
                             <div className={addDocLayoutStyle.selectInputOptionsParent}style={{padding: "0 8px", transform: "translate(-75%)"}} onClick={handleEditButton}>
-                                <p className={addDocLayoutStyle.selectInputOptions}>Edit Doc</p>
+                                <p className={addDocLayoutStyle.selectInputOptions}>Edit</p>
                             </div>
                     }
                 </div>

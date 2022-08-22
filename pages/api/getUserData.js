@@ -7,20 +7,16 @@ const GetUserData = async (req, res) => {
         res.status(401).json({error: "Unautheticated User"});
     }
     else {
-        const client = await clientPromise;
-        const database = client.db(process.env.MONGO_DB);
-        const userCollection = database.collection("userCollection");
-        const data = req.body;
-        const allUsers = await userCollection.find({}).toArray();
-        if(allUsers.length) {
-            allUsers.map(item => {
-                if(item._id == data._id) {
-                    res.send({result: item.data});
-                }
-            });
+        try {
+            const client = await clientPromise;
+            const database = client.db(process.env.MONGO_DB);
+            const userCollection = database.collection("userCollection");
+            const reqData = req.body;
+            const user = await userCollection.findOne({_id: reqData._id});
+            res.send({result: user});
         }
-        else {
-            res.send({result: "UserNotExist"});
+        catch(error) {
+            console.log(error);
         }
     }
 }

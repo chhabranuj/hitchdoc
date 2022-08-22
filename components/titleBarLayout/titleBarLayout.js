@@ -38,6 +38,7 @@ const TitleBar = (props) => {
         hoverBorder: "none",
         hoverBgColor: "white"
     }
+    
     useEffect(() => {
         if(!session) {
             router.push("/signIn");
